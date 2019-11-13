@@ -9,7 +9,7 @@
        <version>5.0.0-SNAPSHOT</version>
    </parent>
 
-  <groupId>com.cartechfin.cheyunpay.zxydk</groupId>
+  <groupId>com.acooly.cnvex.zxydk</groupId>
   <artifactId>common-zxydk</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>zxy-zdk</name>
