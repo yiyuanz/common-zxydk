@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.cnvex.cn/schema/flow"
+xmlns="http://www.cnvex.cn/schema/flow"
+elementFormDefault="qualified">
+
+	<xs:element name="flow">
+		<xs:annotation>
+			<xs:documentation><![CDATA[流程总定义]]></xs:documentation>
+		</xs:annotation>
+		
+		<xs:complexType>
+			<xs:sequence>
+			
+				<xs:element name="descrition"  type="xs:string" maxOccurs="1" minOccurs="1" >
+					<xs:annotation>
+						<xs:documentation><![CDATA[流程空间描述]]></xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				
+				<xs:choice  minOccurs="1"  maxOccurs="unbounded">
+					<xs:element ref="action_node"> 
+						<xs:annotation>
+							<xs:documentation><![CDATA[流程节点信息]]></xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				
+			</xs:sequence>
+			
+			<xs:attribute name="name" type="xs:string"  use="required" >
+				<xs:annotation>
+					<xs:documentation><![CDATA[流程空间名称]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			
+			<xs:attribute name="version" type="xs:string" use="required" >
+				<xs:annotation>
+					<xs:documentation><![CDATA[流程空间版本]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			
+			<xs:attribute name="hasOpenAllTransaction" type="xs:string" use="required" >
+				<xs:annotation>
+					<xs:documentation><![CDATA[是否开启大事务]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			
+			<xs:attribute name="hasOpenLogger" type="xs:string" use="required" >
+				<xs:annotation>
+					<xs:documentation><![CDATA[是否开启日志]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="action_node">
+		<xs:annotation>
+			<xs:documentation><![CDATA[描述节点信息]]></xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="1" minOccurs="0" >
+					<xs:element ref="condition"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			
+			<xs:attribute name="name" type="xs:string" use="required"  >
+				<xs:annotation>
+					<xs:documentation><![CDATA[描述节点名称]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			
+			<xs:attribute name="class" type="xs:string" use="required" >
+				<xs:annotation>
+					<xs:documentation><![CDATA[描述节点的执行类]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			
+			<xs:attribute name="isTransaction" type="xs:string"  default="true" >
+				<xs:annotation>
+					<xs:documentation><![CDATA[描述节点是否开启该节点的事务]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="condition">
+		<xs:annotation>
+			<xs:documentation><![CDATA[描述节点执行后返回值信息]]></xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice minOccurs="1" maxOccurs="unbounded">
+					<xs:element ref="transition"></xs:element>
+				</xs:choice>			
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="transition">
+		<xs:annotation>
+			<xs:documentation><![CDATA[描述每个返回值完整信息]]></xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="event" type="xs:string" use="required" >
+				<xs:annotation>
+					<xs:documentation><![CDATA[表示返回值信息]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			
+			<xs:attribute name="desc" type="xs:string" use="required" >
+				<xs:annotation>
+					<xs:documentation><![CDATA[对结果情况详细描述]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			
+			<xs:attribute name="to" type="xs:string" use="required" >
+				<xs:annotation>
+					<xs:documentation><![CDATA[下一个节点信息]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>
