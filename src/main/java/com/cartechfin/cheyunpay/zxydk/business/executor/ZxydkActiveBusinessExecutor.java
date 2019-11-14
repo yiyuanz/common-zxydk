@@ -131,7 +131,7 @@ public abstract class ZxydkActiveBusinessExecutor< ORDER extends OrderBase , RES
 	@Override
 	public void invoke(ServiceContext<ORDER, RESULT> serviceContext) {
 		
-		logger.info("【%s】执行器开始执行业务, 开始时间：{}!", this.getBeanName() , serviceContext.getStartTime() );
+		logger.info("【{}】执行器开始执行业务, 开始时间：{}!", this.getBeanName() , serviceContext.getStartTime() );
 	}
 	
 	@Override
