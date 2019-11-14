@@ -32,10 +32,9 @@ package com.cartechfin.cheyunpay.zxydk.chain.interfaces;
 import java.io.Serializable;
 import java.util.Map;
 
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.transaction.support.TransactionTemplate;
 
-public interface CommandChain< R > extends ApplicationContextAware, InitializingBean, Serializable {
+public interface CommandChain< R > extends   Serializable {
 	
 	/**
 	 *  @category main method 
@@ -58,35 +57,6 @@ public interface CommandChain< R > extends ApplicationContextAware, Initializing
 	public void process( R object , Map<String, Object> vals );
 	
 	/**
-	 * @category create command instance by calssloader reflact
-	 * 
-	 * @param Class<T> tclz  class of command or command sub type ...  
-	 *  
-	 * @param Boolean isOpenTransaction  transaction param
-	 * 
-	 * @param int grade  command order by grade asc
-	 * 
-	 * @return  T    class of command or command sub type ...
-	 * 
-	 */
-	public <T extends Command<R>> T createInstance( Class<T> tclz , Boolean isOpenTransaction , int grade );
-	
-	
-	/**
-	 * @category create command instance with self annotation by classloader reflact
-	 * <pre> 配合自定义的注解 联合使用 </pre>
-	 * 
-	 * 
-	 * @param Class<T> tclz  
-	 *  
-	 * @return  T    class of command or command sub type ...
-	 * 
-	 */
-	public <T extends Command<R>> T createInstanceWithAnnotation( Class<T> tclz );
-	
-	
-	
-	/**
 	 *  @category creating chain with regist command , asyn set grade and transaction  and manual spring DI...
 	 * 
 	 *  @param Command<R> command 
@@ -95,9 +65,17 @@ public interface CommandChain< R > extends ApplicationContextAware, Initializing
 	
 	
 	/**
-	 * @category close transaction 
+	 * @category 设置 开启全局事务
+	 * 
+	 * <pre> 设置开启全局事务后，执行指令节点事务已失效 </pre>
 	 * 
 	 */
-	public void closeTransaction( );
+	public void  setTransactionSign( Boolean hasOpen );
+	
+	
+	/**
+	 * 设置事务模板 
+	 */
+	public void setTransactionTemplate( TransactionTemplate template );
 	
 }

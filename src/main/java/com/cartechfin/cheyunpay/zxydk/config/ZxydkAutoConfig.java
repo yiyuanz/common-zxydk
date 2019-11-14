@@ -41,8 +41,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.cartechfin.cheyunpay.zxydk.business.containers.ZxydkBusinessCommonContainer;
 import com.cartechfin.cheyunpay.zxydk.business.containers.interfaces.ZxydkBusinessContainer;
-import com.cartechfin.cheyunpay.zxydk.chain.InvokeCommandChain;
-import com.cartechfin.cheyunpay.zxydk.chain.interfaces.CommandChain;
+import com.cartechfin.cheyunpay.zxydk.chain.factory.CommandChainFactory;
 import com.cartechfin.cheyunpay.zxydk.domain.factory.DomainFactory;
 import com.cartechfin.cheyunpay.zxydk.flow.repertory.FlowBaseActionCreator;
 import com.cartechfin.cheyunpay.zxydk.flow.repertory.FlowDocumentReader;
@@ -100,9 +99,9 @@ public class ZxydkAutoConfig implements ApplicationContextAware {
 	 * @category 责任链 
 	 */
 	@Bean
-	public CommandChain commandChain() {
+	public CommandChainFactory commandChainFactory() {
 		
-		return new InvokeCommandChain();
+		return new CommandChainFactory();
 	}
 	
 	/**
