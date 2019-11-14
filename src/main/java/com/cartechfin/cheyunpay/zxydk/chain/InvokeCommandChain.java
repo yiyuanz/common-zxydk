@@ -68,9 +68,6 @@ public class InvokeCommandChain<R extends Object > implements CommandChain<R> {
 	@Override
 	public void execute(R object, Map<String, Object> vals) {
 		
-		if( null  == template ) {
-		}
-		
 		if( this.hasGlobalTransAction ) {
 			
 			Assert.notNull(this.template , " 无法发起责任链模式，因为开启了全局事务，事务模板不能为空！"); 
@@ -113,7 +110,8 @@ public class InvokeCommandChain<R extends Object > implements CommandChain<R> {
 					command.transmit(object, vals, this);
 				}else {
 					// close single command transaction
-					this.process(object, vals);
+					command.execute(object, vals);
+					command.transmit(object, vals, this);
 				}
 			}else {
 				// command match is false  -> to next command
