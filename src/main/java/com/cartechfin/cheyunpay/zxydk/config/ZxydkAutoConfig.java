@@ -88,7 +88,7 @@ public class ZxydkAutoConfig implements ApplicationContextAware {
 	 * @category 活动记录集 
 	 */
 	@Bean
-	@ConditionalOnProperty({"cnvex.mdk.autoconfig.moduleName"})
+	@ConditionalOnProperty({"com.cartechfin.cheyunpay.zxydk.autoconfig.moduleName"})
 	public ZxydkBusinessContainer zdkBusinessContainer() {
 		
 		String moduleName = zdkProperties.getModuleName();
@@ -127,7 +127,7 @@ public class ZxydkAutoConfig implements ApplicationContextAware {
 	 * @category 流程引擎  领域服务
 	 */
 	@Bean
-	@ConditionalOnProperty({"cnvex.mdk.autoconfig.moduleName"})
+	@ConditionalOnProperty({"com.cartechfin.cheyunpay.zxydk.autoconfig.flowFiles"})
 	public FlowEngineDomainService flowEngineDomainService() {
 		
 		FlowEngineDomainService service = new FlowEngineDomainServiceImpl();
