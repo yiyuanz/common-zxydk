@@ -99,7 +99,7 @@ public abstract class ZxydkBusinessActiveContainer implements ZxydkBusinessConta
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		
-		logger.info("********************************【】系统 开始加载业务执行器：******************************" , this.moduleName );
+		logger.info("********************************【{}】系统 开始加载业务执行器：******************************" , this.moduleName );
 		
 		/**
 		 * TODO 参数解释
