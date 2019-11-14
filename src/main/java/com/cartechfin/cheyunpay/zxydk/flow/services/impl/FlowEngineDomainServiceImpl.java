@@ -85,7 +85,17 @@ public class FlowEngineDomainServiceImpl<T extends Object> extends PathMatchingR
 	
 	@Autowired
 	private EventBus eventBus;
-	
+
+	public FlowEngineDomainServiceImpl( String urlPattens ) {
+
+		super();
+		
+		this.intoUrlPartten( urlPattens );
+	}
+
+	public FlowEngineDomainServiceImpl() {
+		super();
+	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

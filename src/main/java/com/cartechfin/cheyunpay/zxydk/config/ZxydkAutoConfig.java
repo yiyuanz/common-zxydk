@@ -129,11 +129,9 @@ public class ZxydkAutoConfig implements ApplicationContextAware {
 	@ConditionalOnProperty({"com.cartechfin.cheyunpay.zxydk.autoconfig.flowFiles"})
 	public FlowEngineDomainService flowEngineDomainService() {
 		
-		FlowEngineDomainService service = new FlowEngineDomainServiceImpl();
-		
 		String flowFilesUrls = zdkProperties.getFlowFiles();
 		
-		service.intoUrlPartten( flowFilesUrls );
+		FlowEngineDomainService service = new FlowEngineDomainServiceImpl( flowFilesUrls );
 		
 		return service;
 	}
