@@ -74,6 +74,8 @@ public interface CommandChain< R > extends ApplicationContextAware, Initializing
 	
 	/**
 	 * @category create command instance with self annotation by classloader reflact
+	 * <pre> 配合自定义的注解 联合使用 </pre>
+	 * 
 	 * 
 	 * @param Class<T> tclz  
 	 *  

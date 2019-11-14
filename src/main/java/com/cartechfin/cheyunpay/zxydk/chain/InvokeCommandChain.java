@@ -115,6 +115,9 @@ public class InvokeCommandChain<R extends Object > implements CommandChain<R> {
 					return null;
 				}
 			});
+		}else {
+			 
+			process( object, vals ); 
 		}
 	}
 
