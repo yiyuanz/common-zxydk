@@ -36,7 +36,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.Ordered;
 
-public interface Command<R extends Object> extends ApplicationContextAware, InitializingBean, Comparable<Ordered>, Ordered, Serializable {
+public interface Command<R extends Object> extends Comparable<Ordered>, Ordered, Serializable {
 	
 	/**
 	 * @category match executeAble  

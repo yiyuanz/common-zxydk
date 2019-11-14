@@ -58,12 +58,6 @@ public abstract class InvokeCommand<R extends Object> implements Command<R> {
 	// 日志
 	protected static final Logger logger = LoggerFactory.getLogger(InvokeCommand.class);
 	
-	// spring context
-	protected ApplicationContext context;
-	
-	// manual into Object of javaBean
-	protected AutowireCapableBeanFactory autoBeanFactory;
-	
 	// DDD domainFactory
 	@Autowired
 	protected DomainFactory domainFactory;
@@ -77,20 +71,6 @@ public abstract class InvokeCommand<R extends Object> implements Command<R> {
 	
 	// order by grade of command execute 
 	private int orderGrade;
-	
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		
-		this.context = applicationContext;
-		
-		this.autoBeanFactory = this.context.getAutowireCapableBeanFactory();
-		
-	}
-
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		
-	}
 	
 	@Override
 	public void transmit(R object, Map<String, Object> vals, CommandChain<R> chain) {
