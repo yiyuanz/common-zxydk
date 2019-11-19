@@ -29,6 +29,8 @@
  */
 package com.cartechfin.cheyunpay.zxydk.config;
 
+import java.io.IOException;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -126,11 +128,8 @@ public class ZxydkAutoConfig implements ApplicationContextAware {
 	 * @category 流程引擎  领域服务
 	 */
 	@Bean
-	@ConditionalOnProperty({"com.cartechfin.cheyunpay.zxydk.autoconfig.flowFiles"})
-	public FlowEngineDomainService flowEngineDomainService() {
+	public FlowEngineDomainService flowEngineDomainService() throws IOException{
 		
-		String flowFilesUrls = zdkProperties.getFlowFiles();
-		
-		return new FlowEngineDomainServiceImpl( flowFilesUrls );
+		return new FlowEngineDomainServiceImpl( zdkProperties.getFlowFiles() );
 	}
 }
