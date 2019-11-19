@@ -131,8 +131,6 @@ public class ZxydkAutoConfig implements ApplicationContextAware {
 		
 		String flowFilesUrls = zdkProperties.getFlowFiles();
 		
-		FlowEngineDomainService service = new FlowEngineDomainServiceImpl( flowFilesUrls );
-		
-		return service;
+		return new FlowEngineDomainServiceImpl( flowFilesUrls );
 	}
 }
