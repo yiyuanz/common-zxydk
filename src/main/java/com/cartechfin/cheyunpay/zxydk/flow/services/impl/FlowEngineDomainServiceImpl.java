@@ -124,9 +124,11 @@ public class FlowEngineDomainServiceImpl extends PathMatchingResourcePatternReso
 			
 			FlowEngine flowEngine = new FlowEngineWapper();
 			
-			flowEngine.manualRegistActionFlow( flow );
-			
 			this.capableBeanFactory.autowireBeanProperties(flowEngine, 0, false);
+			
+			this.capableBeanFactory.autowireBeanProperties(flow, 0, false);
+			
+			flowEngine.manualRegistActionFlow( flow );
 			
 			manualAddFlowEngine( flowEngine );
 		}
