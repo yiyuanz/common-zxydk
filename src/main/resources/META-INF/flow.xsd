@@ -40,13 +40,13 @@ elementFormDefault="qualified">
 				</xs:annotation>
 			</xs:attribute>
 			
-			<xs:attribute name="hasOpenAllTransaction" type="xs:string" use="required" >
+			<xs:attribute name="hasOpenAllTransaction" type="xs:string" use="optional" >
 				<xs:annotation>
 					<xs:documentation><![CDATA[是否开启大事务]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			
-			<xs:attribute name="hasOpenLogger" type="xs:string" use="required" >
+			<xs:attribute name="hasOpenLogger" type="xs:string" use="optional" >
 				<xs:annotation>
 					<xs:documentation><![CDATA[是否开启日志]]></xs:documentation>
 				</xs:annotation>
