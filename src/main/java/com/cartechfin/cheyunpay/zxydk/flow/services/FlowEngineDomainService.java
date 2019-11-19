@@ -32,7 +32,6 @@ package com.cartechfin.cheyunpay.zxydk.flow.services;
 import java.io.Serializable;
 import java.util.Map;
 
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
@@ -42,7 +41,7 @@ import org.springframework.core.io.Resource;
  * @category 
  * 
  */
-public interface FlowEngineDomainService extends ApplicationContextAware , InitializingBean , Serializable {
+public interface FlowEngineDomainService< T > extends ApplicationContextAware , InitializingBean , Serializable {
 	
 	/**
 	 * @category 启动流程引擎

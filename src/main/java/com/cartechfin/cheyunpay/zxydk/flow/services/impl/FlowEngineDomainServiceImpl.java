@@ -32,7 +32,6 @@ package com.cartechfin.cheyunpay.zxydk.flow.services.impl;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -54,7 +53,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 @SuppressWarnings("all")
-public class FlowEngineDomainServiceImpl extends PathMatchingResourcePatternResolver implements FlowEngineDomainService {
+public class FlowEngineDomainServiceImpl<T extends Object> extends PathMatchingResourcePatternResolver implements FlowEngineDomainService<T> {
 	
 	/**
 	 * serialVersionUID
