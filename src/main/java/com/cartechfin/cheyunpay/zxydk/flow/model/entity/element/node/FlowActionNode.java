@@ -44,7 +44,6 @@ import org.springframework.transaction.support.TransactionTemplate;
 import com.acooly.module.event.EventBus;
 import com.cartechfin.cheyunpay.zxydk.domain.factory.DomainFactory;
 import com.cartechfin.cheyunpay.zxydk.flow.contants.FlowContants;
-import com.cartechfin.cheyunpay.zxydk.flow.model.arggreroot.FlowBaseAction;
 import com.cartechfin.cheyunpay.zxydk.flow.model.entity.element.condition.ActionCondition;
 import com.cartechfin.cheyunpay.zxydk.flow.model.entity.element.condition.ActionConditionSelector;
 import com.cartechfin.cheyunpay.zxydk.flow.model.entity.element.transition.ActionTransition;
@@ -82,7 +81,7 @@ public abstract class FlowActionNode< T extends Object > implements ActionNode< 
 	private Boolean hasTransaction = Boolean.FALSE;
 	
 	/** 条件 */
-	private ActionCondition<T> condition;
+	private ActionCondition<T> condition = new ActionConditionSelector();
 	
 	/** 是否打开日志跟踪器 默认为不打开，是由配置文件决定 */
 	private Boolean hasOpenLogger = Boolean.FALSE;
@@ -288,5 +287,4 @@ public abstract class FlowActionNode< T extends Object > implements ActionNode< 
 	public void setOpenLogger(Boolean hasOpenLogger) {
 		this.hasOpenLogger = hasOpenLogger;
 	}
-	
 }
