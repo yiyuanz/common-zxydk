@@ -35,6 +35,7 @@ import java.util.Map;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContextAware;
 
+import com.cartechfin.cheyunpay.zxydk.common.enums.FlowEngineTypeEnum;
 import com.cartechfin.cheyunpay.zxydk.flow.model.entity.element.actionflow.ActionFlow;
 
 /**
@@ -92,5 +93,16 @@ public interface FlowEngine< T extends Object> extends ApplicationContextAware, 
 	 * 
 	 */
 	public ActionFlow.Key getUniqueKey();
+	
+	/**
+	 * @category 获得流程图 
+	 */
+	public ActionFlow getFlowInfo();
+	
+	
+	/**
+	 * @category 获得流程图的来源 
+	 */
+	public FlowEngineTypeEnum getEngineType();
 	
 }

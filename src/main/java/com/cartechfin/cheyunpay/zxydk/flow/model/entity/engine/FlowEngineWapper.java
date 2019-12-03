@@ -34,6 +34,7 @@ import java.util.Map;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 
+import com.cartechfin.cheyunpay.zxydk.common.enums.FlowEngineTypeEnum;
 import com.cartechfin.cheyunpay.zxydk.flow.model.arggreroot.FlowEngine;
 import com.cartechfin.cheyunpay.zxydk.flow.model.entity.element.actionflow.ActionFlow;
 import com.cartechfin.cheyunpay.zxydk.flow.model.entity.element.actionflow.ActionFlow.Key;
@@ -51,8 +52,14 @@ public class FlowEngineWapper<T extends Object> implements FlowEngine< T > {
 	private ActionFlow< T >  actionFlow;
 	
 	
+	private FlowEngineTypeEnum engineType;
 	
 	
+	public FlowEngineWapper(FlowEngineTypeEnum engineType) {
+		super();
+		this.engineType = engineType;
+	}
+
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		
@@ -99,5 +106,19 @@ public class FlowEngineWapper<T extends Object> implements FlowEngine< T > {
 		
 		return this.actionFlow.getUniqueKey();
 	}
+
+	@Override
+	public ActionFlow getFlowInfo() {
+		// TODO Auto-generated method stub
+		return this.actionFlow;
+	}
+
+	@Override
+	public FlowEngineTypeEnum getEngineType() {
+		// TODO Auto-generated method stub
+		return this.engineType;
+	}
+	
+	
 	
 }
