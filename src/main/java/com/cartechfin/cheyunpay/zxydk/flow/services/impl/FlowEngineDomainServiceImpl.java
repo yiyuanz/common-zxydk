@@ -143,7 +143,7 @@ public class FlowEngineDomainServiceImpl<T extends Object> extends PathMatchingR
 			FlowChat annotationChat = node.getClass().getAnnotation(FlowChat.class);
 			FlowNode flowNode = node.getClass().getAnnotation(FlowNode.class);
 			FlowChatHandle chatHandle = new FlowChatHandle(annotationChat.name(), annotationChat.version(), annotationChat.hasOpenLogger(), annotationChat.hasTransaction() ); 
-			FlowEngine engine = this.obtainFlowEngine(chatHandle.actionFlowKey());
+			FlowEngine engine = this.engines.get( chatHandle.actionFlowKey() ); 
 			if( null == engine ) {
 				/** 新流程 */ 
 				engine = new FlowEngineWapper( FlowEngineTypeEnum.ANNOTATION );
@@ -151,14 +151,16 @@ public class FlowEngineDomainServiceImpl<T extends Object> extends PathMatchingR
 				// 流程图总定义节点
 				ActionFlow flow = chatHandle.fillIntoFlowBaseInfo( this.flowBaseActionCreator );
 				FlowNodeHandle nodeHandle = new FlowNodeHandle( flowNode.name(), flow.getHasOpenTransaction()? Boolean.FALSE : flowNode.hasTransaction(), flowNode.conditions() );
-				flow.addActionNode( nodeHandle.createActionNode( flow.getHasOpenLogger() , node , this.flowBaseActionCreator) );
+				flow.addActionNode( nodeHandle.createActionNode( flow , node , this.flowBaseActionCreator) );
 				engine.manualRegistActionFlow( flow );
 				manualAddFlowEngine( engine );
 			}else {
 				/** 老流程 */ 
 				Assert.isTrue( FlowEngineTypeEnum.ANNOTATION == engine.getEngineType(), "annotation flow create error , flowengine type must by annotation !" ); 
+				Assert.isTrue( engine.getFlowInfo().getHasOpenLogger().equals(chatHandle.getHasOpenLogger()) , String.format( " annotation flow create error , node : %s , openlogger is diffrent now! ", node.getClass().getName()) );
+				Assert.isTrue(engine.getFlowInfo().getHasOpenTransaction().equals(chatHandle.getHasTransaction()) , String.format( " annotation flow create error , node : %s , hastransaction is diffrent now! ", node.getClass().getName()) );
 				FlowNodeHandle nodeHandle = new FlowNodeHandle( flowNode.name(), engine.getFlowInfo().getHasOpenTransaction()? Boolean.FALSE : flowNode.hasTransaction(), flowNode.conditions() );
-				engine.getFlowInfo().addActionNode( nodeHandle.createActionNode( engine.getFlowInfo().getHasOpenLogger() , node , this.flowBaseActionCreator) );
+				engine.getFlowInfo().addActionNode( nodeHandle.createActionNode( engine.getFlowInfo() , node , this.flowBaseActionCreator) );
 			}
 		}
 		for( Entry<Key, FlowEngine> es : this.engines.entrySet() ) {

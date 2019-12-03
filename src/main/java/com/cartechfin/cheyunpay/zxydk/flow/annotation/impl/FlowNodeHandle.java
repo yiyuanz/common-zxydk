@@ -88,12 +88,15 @@ public class FlowNodeHandle implements Serializable {
 		this.conditions.add(transaction);
 	}
 
-	public FlowActionNode createActionNode(	Boolean isOpenLogger, FlowActionNode node, FlowBaseActionCreator flowBaseActionCreator) {
+	public FlowActionNode createActionNode(	ActionFlow actionFlow , FlowActionNode node, FlowBaseActionCreator flowBaseActionCreator) {
 		 
 		node.setNodeName(this.getName());
 		
-		node.setOpenLogger( isOpenLogger );
+		node.setOpenLogger( actionFlow.getHasOpenLogger() );
 		
+		node.setFlowName(actionFlow.getUniqueKey().getName());
+		
+		node.setFlowVersion(actionFlow.getUniqueKey().getVersion());
 		
 		for( FlowTransactionHandle actionHandle : this.conditions ) {
 			
