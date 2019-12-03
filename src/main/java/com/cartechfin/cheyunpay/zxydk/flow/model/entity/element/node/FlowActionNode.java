@@ -219,7 +219,7 @@ public abstract class FlowActionNode< T extends Object > implements ActionNode< 
 		 
 		if( this.hasOpenLogger ) {
 			
-			logger.info("--- 流程【{}】--- 版本【{}】 --- 节点【{}】 --- 执行结束， 节点耗时：【】ms！", this.flowName, this.flowVersion , this.name, System.currentTimeMillis() - now);
+			logger.info("--- 流程【{}】--- 版本【{}】 --- 节点【{}】 --- 执行结束， 节点耗时：【{}】ms！", this.flowName, this.flowVersion , this.name, System.currentTimeMillis() - now);
 		}
 	}
 

@@ -157,7 +157,6 @@ public class FlowEngineDomainServiceImpl<T extends Object> extends PathMatchingR
 			}else {
 				/** 老流程 */ 
 				Assert.isTrue( FlowEngineTypeEnum.ANNOTATION == engine.getEngineType(), "annotation flow create error , flowengine type must by annotation !" ); 
-				Assert.isTrue( engine.getFlowInfo().getHasOpenLogger().equals(chatHandle.getHasOpenLogger()) , String.format( " annotation flow create error , node : %s , openlogger is diffrent now! ", node.getClass().getName()) );
 				Assert.isTrue(engine.getFlowInfo().getHasOpenTransaction().equals(chatHandle.getHasTransaction()) , String.format( " annotation flow create error , node : %s , hastransaction is diffrent now! ", node.getClass().getName()) );
 				FlowNodeHandle nodeHandle = new FlowNodeHandle( flowNode.name(), engine.getFlowInfo().getHasOpenTransaction()? Boolean.FALSE : flowNode.hasTransaction(), flowNode.conditions() );
 				engine.getFlowInfo().addActionNode( nodeHandle.createActionNode( engine.getFlowInfo() , node , this.flowBaseActionCreator) );
